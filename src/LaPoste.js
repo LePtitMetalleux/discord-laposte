@@ -1,10 +1,11 @@
 const fetch = require('node-fetch')
+const { EventEmitter } = require('events')
 const Suivi = require('./Suivi')
 
-class LaPoste {
+class LaPoste extends EventEmitter {
   constructor (client) {
     if (!client) throw new SyntaxError('Invalid Discord client')
-
+    super()
     /**
      * Discord.js client instance
      * @type {Discord.Client}
@@ -12,7 +13,7 @@ class LaPoste {
     this.client = client
   }
 
-  async search (id, lang) {
+  async search (message, id, lang) {
     if (!id) throw new Error('Aucun numéro de suivi fourni.')
     if (!lang) lang = 'fr_FR'
 
@@ -25,7 +26,8 @@ class LaPoste {
     })
       .then(res => res.json())
     if (infos.returnCode !== 200) throw new Error(infos.returnMessage)
-    return new Suivi(infos)
+    const suivi = new Suivi(infos)
+    this.emit('suivi', message, suivi)
   }
 }
 module.exports = LaPoste

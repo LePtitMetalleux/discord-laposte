@@ -21,6 +21,8 @@ class Suivi {
     this.origin = data.shipment.contextData.originCountry
 
     this.arrival = data.shipment.contextData.arrivalCountry
+
+    this.logo = '../logo_laposte.png'
   }
 }
 
