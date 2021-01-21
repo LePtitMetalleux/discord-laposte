@@ -14,20 +14,24 @@ class LaPoste extends EventEmitter {
   }
 
   async search (message, id, lang) {
-    if (!id) throw new Error('Aucun numéro de suivi fourni.')
-    if (!lang) lang = 'fr_FR'
+    try {
+      if (!id) throw new Error('Aucun numéro de suivi fourni.')
+      if (!lang) lang = 'fr_FR'
 
-    const infos = await fetch(`https://api.laposte.fr/suivi/v2/idships/${id}?lang=${lang}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'X-Okapi-Key': '/hTIFryaAJAwGCand0OXW2E9mzvyNxLArspQMJ9UUmN0tH+y1EimpTN5zmpuGbf/'
-      }
-    })
-      .then(res => res.json())
-    if (infos.returnCode !== 200) throw new Error(infos.returnMessage)
-    const suivi = new Suivi(infos)
-    this.emit('suivi', message, suivi)
+      const infos = await fetch(`https://api.laposte.fr/suivi/v2/idships/${id}?lang=${lang}`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'X-Okapi-Key': '+xOQ7HRcPK5R57XBLQ4YX0gXCI1xPrH2adT+/O6THzm7DSgagR4dGwToEv9RpWyM'
+        }
+      })
+        .then(res => res.json())
+      if (infos.returnCode !== 200) message.channel.send(infos.returnMessage)
+      const suivi = new Suivi(infos)
+      this.emit('suivi', message, suivi)
+    } catch (error) {
+
+    }
   }
 }
 module.exports = LaPoste

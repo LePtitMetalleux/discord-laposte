@@ -1,6 +1,6 @@
 {
   "name": "discord-laposte",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Permet de suivre en temps réel vos envois par La Poste sur Discord",
   "main": "index.js",
   "scripts": {

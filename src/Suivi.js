@@ -1,8 +1,15 @@
 class Suivi {
   constructor (data) {
+    const holders = {
+      1: 'Courrier national',
+      2: 'Courrier international',
+      3: 'Chronopost',
+      4: 'Colissimo'
+    }
+
     this.id = data.shipment.idShip
 
-    this.holder = data.shipment.holder
+    this.holder = holders[data.shipment.holder]
 
     this.type = data.shipment.product
 
@@ -22,7 +29,7 @@ class Suivi {
 
     this.arrival = data.shipment.contextData.arrivalCountry
 
-    this.logo = '../logo_laposte.png'
+    this.logo = 'https://www.laposte.fr/_ui/mobile/img/logo.png'
   }
 }
 
