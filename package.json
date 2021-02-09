@@ -1,0 +1,29 @@
+{
+  "name": "discord-laposte",
+  "version": "1.0.0",
+  "description": "Permet de suivre en temps réel vos envois par La Poste sur Discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LePtitMetalleux/discord-laposte.git"
+  },
+  "keywords": [
+    "Discord",
+    "LaPoste",
+    "Colis",
+    "Lettres"
+  ],
+  "author": "LePitMetalleux | Lycos Novation (https://github.com/Lycos-Novation)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LePtitMetalleux/discord-laposte/issues"
+  },
+  "homepage": "https://github.com/LePtitMetalleux/discord-laposte#readme",
+  "dependencies": {
+    "events": "^3.2.0",
+    "node-fetch": "^2.6.1"
+  }
+}
