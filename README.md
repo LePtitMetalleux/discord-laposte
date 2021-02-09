@@ -49,9 +49,9 @@ client.on('message', async (message) => {
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g)
     const command = args.shift().toLowerCase()
 
-    //  $test 6A20290689303
+    //  $suivi 6A20290689303
     //  Va indiquer les informations sur le numéro de suivi 6A20290689303 en français
-    if (command === 'test') {
+    if (command === 'suivi') {
       client.laposte.search(message, '6A20290689303')
     }
   } catch (error) {
