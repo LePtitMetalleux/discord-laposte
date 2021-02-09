@@ -18,11 +18,10 @@ class LaPoste extends EventEmitter {
       if (!id) throw new Error('Aucun numéro de suivi fourni.')
       if (!lang) lang = 'fr_FR'
 
-      const infos = await fetch(`https://api.laposte.fr/suivi/v2/idships/${id}?lang=${lang}`, {
+      const infos = await fetch(`https://lycos-novation.fr/api/laposte/?id=${id}&?lang=${lang}`, {
         method: 'GET',
         headers: {
-          Accept: 'application/json',
-          'X-Okapi-Key': '+xOQ7HRcPK5R57XBLQ4YX0gXCI1xPrH2adT+/O6THzm7DSgagR4dGwToEv9RpWyM'
+          'Content-Type': 'application/json'
         }
       })
         .then(res => res.json())
@@ -30,7 +29,7 @@ class LaPoste extends EventEmitter {
       const suivi = new Suivi(infos)
       this.emit('suivi', message, suivi)
     } catch (error) {
-
+      return message.channel.send(error)
     }
   }
 }
