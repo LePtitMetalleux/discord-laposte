@@ -1,6 +1,6 @@
 {
   "name": "discord-laposte",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Permet de suivre en temps réel vos envois par La Poste sur Discord",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,6 @@
   "homepage": "https://github.com/LePtitMetalleux/discord-laposte#readme",
   "dependencies": {
     "events": "^3.2.0",
-    "node-laposte": "0.0.3"
+    "node-laposte": "^1.0.0"
   }
 }
