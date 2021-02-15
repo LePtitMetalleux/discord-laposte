@@ -1,4 +1,5 @@
-const fetch = require('node-fetch')
+const { NodeLaPoste } = require('node-laposte')
+const Nodelaposte = new NodeLaPoste()
 const { EventEmitter } = require('events')
 const Suivi = require('./Suivi')
 
@@ -18,18 +19,12 @@ class LaPoste extends EventEmitter {
       if (!id) throw new Error('Aucun numéro de suivi fourni.')
       if (!lang) lang = 'fr_FR'
 
-      const infos = await fetch(`https://lycos-novation.fr/api/laposte/?id=${id}&?lang=${lang}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(res => res.json())
+      const infos = await Nodelaposte.nodeSearch(id, lang)
       if (infos.returnCode !== 200) message.channel.send(infos.returnMessage)
       const suivi = new Suivi(infos)
       this.emit('suivi', message, suivi)
     } catch (error) {
-      return message.channel.send(error)
+      throw new Error(error)
     }
   }
 }
